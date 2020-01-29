@@ -20,7 +20,11 @@
     "SERVER_URL": {
       "description": "URL to connect to your Heroku instance (update with your app's name + PARSE_MOUNT)",
       "value": "https://bk-demo-app.herokuapp.com/parse"
-    }
+    }, 
+    "DATABASE_URI": {
+      "description": "Connect to mlab",
+      "value": "mongodb://bk-demo-app-db-user:dhg73-9SY18$923Xsy%dk23!@ds039125.mlab.com:39125/heroku_39dptd5q"
+    }, 
   },
   "image": "heroku/nodejs",
   "addons": ["mongolab"]
