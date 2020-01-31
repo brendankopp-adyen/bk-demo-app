@@ -28,6 +28,23 @@ const parseGraphQLServer = new ParseGraphQLServer(
   }
 );
 
+app.post('/notify', function( req, res ){
+  //send it to slack
+  return Parse.Cloud.httpRequest({
+    method: 'POST',
+    url: 'https://hooks.slack.com/services/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', 
+    body: {
+      body: JSON.stringify( req.body.data )
+    }
+  }).then(function(httpResponse) {
+    console.log(httpResponse.text);
+    res.status(200).send("[accepted]");
+  },function(httpResponse) {
+    console.error('Request failed with response code ' + httpResponse.status);
+    res.sendStatus( httpResponse.status );
+  });
+});
+
 app.use('/parse', parseServer.app); // (Optional) Mounts the REST API
 parseGraphQLServer.applyGraphQL(app); // Mounts the GraphQL API
 parseGraphQLServer.applyPlayground(app); // (Optional) Mounts the GraphQL Playground - do NOT use in Production
